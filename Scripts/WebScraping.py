@@ -26,7 +26,7 @@ url = 'https://twitter.com/search?q=ELEI%C3%87%C3%95ES%202022&src=typed_query&f=
 
 browser.get(url) #Abre o site
 
-chave = ['bolsonaro','eleições 2022','lula','ciro gomes']
+chave = ['bolsonaro','eleições 2022','lula','ciro gomes','simone tebet','felipe d’avila','leo pericles','roberto jefferson']
 chaveEs = ['Carlos Manato','Audifax','Renato Casagrande','Guerino Zanon','Aridelmo','Claudio Paiva','Capitão Vinicius Sousa']
 
 action = ActionChains(browser) #Utilizado para executar algumas ações especiais 
@@ -46,7 +46,9 @@ def find_posts(key,file_name):
     pesquisa = browser.find_element('xpath', '//*[@id="react-root"]/div/div/div[2]/main/div/div/div/div/div/div[1]/div[1]/div[1]/div/div/div/div/div[2]/div[2]/div/div/div/form/div[1]/div/div/div/label/div[2]/div/input')
     pesquisa.click()
     time.sleep(2)
-
+    
+    
+    
     for i in key: #Percorre as chaves para utilizar na pesquisa
 
         pesquisa.send_keys(Keys.CONTROL + 'A') #Seleciona todo o texto da barra de pesquisa
@@ -55,11 +57,11 @@ def find_posts(key,file_name):
         pesquisa.send_keys(i) #Passa a palavra chave para busca
         time.sleep(2)
         pesquisa.send_keys(Keys.ENTER)
-
-        arquivo = open('.\DataBase\\'+file_name+name_aleatory()+'.txt','w') 
+        
+         
         #while(True):
 
-        for j in range(0,10): #Loop para continuar pegando os posts
+        for j in range(0,15): #Loop para continuar pegando os posts
             time.sleep(10)
             txt = browser.find_elements('xpath', "//div/div[@data-testid='tweetText']") #Pega os textos dos posts já visiveis na página
             #date_post = browser.find_element('xpath', "//*[@id='id__ubzlzwbe559']/div[2]/div/div[3]/a/time")
@@ -74,14 +76,17 @@ def find_posts(key,file_name):
                     linha += f
                 
                 posts.append(linha+"\n") #salva o texto dos posts no vetor
-                              
+                
+                
             action.scroll_by_amount(0,4000).perform() #Rola a página para atualizar os posts
             action.scroll_by_amount(0,2000).perform() #Rola a página para atualizar os posts
             
-            str(arquivo.write(posts[p])).encode(errors="ignore")
+        
             
        # arquivo = open(file_name + '.txt','w') #Cria/Abre o arquivo para escrita
-       # for k in range(0,len(posts)): 
+        arquivo = open(file_name+'.txt','w', encoding="utf-8")
+        for k in range(0,len(posts)):
+            str(arquivo.write(posts[k])).encode(errors="ignore")
             #print(posts[k])
           #  arquivo.write(posts[k]) #Escreve cada linha de texto no arquivo
 
@@ -92,4 +97,5 @@ def find_posts(key,file_name):
         time.sleep(2)
 
 find_posts(chave, 'Presidenciaveis')
+
 find_posts(chaveEs, 'Governamentais')
