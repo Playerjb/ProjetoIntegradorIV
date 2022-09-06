@@ -16,7 +16,7 @@ def remove_punctuations(line):
     return line
 
 def writeFile(dict, archiveName):
-    arquivo = open(archiveName+".txt",'w')
+    arquivo = open('.\DataBase\\'+archiveName+".txt",'w')
     for word, tf in dict.items():
         sentence = f"{word}:{tf}\n"
         arquivo.write(sentence)
@@ -26,7 +26,7 @@ def writeFile(dict, archiveName):
 
 # ------------------------- TF -------------------
 
-filepath = "posts.txt"
+filepath = ".\DataBase\posts.txt"
 word_count = {}
 
 with open(filepath, 'r') as fi:
