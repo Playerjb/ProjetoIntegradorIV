@@ -20,7 +20,7 @@ import time
 #browser = webdriver.Firefox(service=service, options=options)
 browser = webdriver.Chrome()
 
-posts = []
+#posts = []
 
 url = 'https://twitter.com/search?q=ELEI%C3%87%C3%95ES%202022&src=typed_query&f=live'
 
@@ -51,6 +51,8 @@ def find_posts(key,file_name):
     
     for i in key: #Percorre as chaves para utilizar na pesquisa
 
+        posts = []
+
         pesquisa.send_keys(Keys.CONTROL + 'A') #Seleciona todo o texto da barra de pesquisa
         pesquisa.send_keys(Keys.BACKSPACE) #Apaga o texto que está na barra de pesquisa
 
@@ -61,7 +63,7 @@ def find_posts(key,file_name):
          
         #while(True):
 
-        for j in range(0,15): #Loop para continuar pegando os posts
+        for j in range(0,5): #Loop para continuar pegando os posts
             time.sleep(10)
             txt = browser.find_elements('xpath', "//div/div[@data-testid='tweetText']") #Pega os textos dos posts já visiveis na página
             #date_post = browser.find_element('xpath', "//*[@id='id__ubzlzwbe559']/div[2]/div/div[3]/a/time")
@@ -84,18 +86,18 @@ def find_posts(key,file_name):
         
             
        # arquivo = open(file_name + '.txt','w') #Cria/Abre o arquivo para escrita
-        arquivo = open(file_name+'.txt','w', encoding="utf-8")
+        arquivo = open('.\DataBase\\'+i+file_name+'.txt','w', encoding="utf-8")
         for k in range(0,len(posts)):
             str(arquivo.write(posts[k])).encode(errors="ignore")
             #print(posts[k])
           #  arquivo.write(posts[k]) #Escreve cada linha de texto no arquivo
 
         arquivo.close() #Fecha o arquivo
-    
+
         time.sleep(2)
         pesquisa.click()
         time.sleep(2)
 
-find_posts(chave, 'Presidenciaveis')
+find_posts(chave, name_aleatory())
 
-find_posts(chaveEs, 'Governamentais')
+find_posts(chaveEs, name_aleatory())
