@@ -1,0 +1,6 @@
+Entrega C2
+
+Utilizar o K-means para classificar os twittes através das ponderações. Irá retornar os valores de 0 a 2 na qual serão utilizados para formar uma nova coluna no dataframe das ponderações.
+Após isso, será necessário utilizar a função "sample" da biblioteca pandas, para filtrar uma amostra na qual será utilizada para validar se o twitter é positivo, negativo e neutro.
+Caso toda a amostra esteja igual, está OK, caso negativo, será necessário filtrar as ponderações salvando em um DF a parte, e executar o k-means novamente para este conjunto e o reclassificar novamente.
+Daí, realizar o sample novamente validando, e se necessário, repetir os passos anteriores até que todas as amostras de um grupo atinjam um resultado igual.
