@@ -109,4 +109,16 @@ writeCSV(dfTF, "TF")
 writeCSV(dfIDF, "IDF")
 writeCSV(dfTF_IDF, "TF_IDF")
 
+#clusterização --- TF
 
+#validar com o professor
+x = np.array(dfTF)
+kmeans_model = KMeans (n_clusters=3, random_state=0, init='random', n_init=10, max_iter=300, tol=1e-04).fit(x) #dps perguntar pro prof se precisa de todos esses parametros
+kmeans_model.labels_
+kmeans_model.cluster_centers_
+
+mydict = {i: np.where(kmeans_model.labels_ == i)[0] for i in range(kmeans_model.n_clusters)}
+dictlist = []
+for key, value in mydict.items():
+    temp = [key,value]
+    dictlist.append(temp)
