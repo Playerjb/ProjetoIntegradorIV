@@ -1,8 +1,27 @@
+"""
+Installers
+pandas: $pip install pandas
+K-means: $pip install -U scikit-learn
+Matplotlib: $python -m pip install -U matplotlib
+nltk: $pip install nltk
+"""
+
 from asyncore import write
 import pandas as pd
-#from doctest import DocTestFailure
+from doctest import DocTestFailure
 import math
 import string
+from sklearn.cluster import KMeans
+from sklearn.datasets._samples_generator import make_blobs
+
+#----------- importando bibliotecas para tratar as palavras
+
+#from worldcloud import WordCloud, STOPWORDS, ImageColorGenerator
+import matplotlib.pyplot as plt
+import numpy as np
+from PIL import Image
+from nltk.tokenize import word_tokenize
+import nltk
 
 #----------- funções
 
